@@ -26,6 +26,7 @@ namespace CMouss.Alchemy
     {
         ERC721 = 1,
         ERC1155 = 2
+
     }
 
 }
