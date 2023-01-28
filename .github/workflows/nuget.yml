@@ -1,16 +1,15 @@
-name: "Deploy to Nuget"
+name: Deploy to Nuget
 
-on: ["push"]
+on: push
 
 env:
 	PROJECT0_PATH: 'CMouss.Alchemy/CMouss.Alchemy.csproj'
 	PACKAGE_OUTPUT: ${{ github.workspace }}\output
-	NUGET_SOURCE : ''https://api.nuget.org/v3/index.json''
+	NUGET_SOURCE : 'https://api.nuget.org/v3/index.json'
 
 jobs:
 	deploy:
-		name: 'Deploy'
-		runs-on: 'windows-latest'
+		runs-on: windows-latest
 		steps:
 		- name: 'Checkout'
 		  uses: actions/checkout@v2
