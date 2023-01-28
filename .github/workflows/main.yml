@@ -13,10 +13,10 @@ jobs:
       - name: 'Restore packages'
         run: dotnet restore CMouss.Alchemy/CMouss.Alchemy.csproj
       - name: 'Build project'
-        run: dotnet build CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore Release
+        run: dotnet build CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore
       
       - name: 'Pack project'
-        run: dotnet pack ${{ secrets.MAINPROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT }}
+        run: dotnet pack CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore --no-build --configuration Debug --include-symbols --output CMouss.Alchemy/output
       
       - name: "Push package"
-        run: dotnet nuget push ${{ secrets.PACKAGE_OUTPUT }}\*.nupkg -k ${{ secrets.NUGETKEY }} -s ${{ secrets.NUGET_SOURCE }}
+        run: dotnet nuget push CMouss.Alchemy/output/*.nupkg -k ${{ secrets.NUGETKEY }} -s ${{ secrets.NUGET_SOURCE }}
