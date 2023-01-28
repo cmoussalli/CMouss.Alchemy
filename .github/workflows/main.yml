@@ -16,7 +16,7 @@ jobs:
         run: dotnet build CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore
       
       - name: 'Pack project'
-        run: dotnet pack CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore --no-build --configuration Debug --output CMouss.Alchemy/output
+        run: dotnet pack CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore --no-build --configuration Debug --output output
       
       - run: echo ${{ secrets.NUGETKEY }}
 
