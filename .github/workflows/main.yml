@@ -10,7 +10,7 @@ jobs:
         with: 
           dotnet-version: 6.0.x
       - run: dotnet clean
-      - run: echo ${{ env.MAINPROJECT_PATH }}
+      - run: echo ${{ secrets.MAINPROJECT_PATH }}
       - name: 'Restore packages'
         run: dotnet restore ${{ secrets.MAINPROJECT_PATH }}
       - name: 'Build project'
