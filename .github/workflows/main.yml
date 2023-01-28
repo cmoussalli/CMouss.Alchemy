@@ -15,9 +15,3 @@ jobs:
         run: dotnet restore CMouss.Alchemy/CMouss.Alchemy.csproj
       - name: 'Build project'
         run: dotnet build CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore
-      
-      - name: 'Pack project'
-        run: dotnet pack CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore --no-build --configuration Debug --output output
-
-      - name: "Push package"
-        run: dotnet nuget push output\*.nupkg -k ${{ secrets.NUGETKEY }} -s https://api.nuget.org/v3/index.json
