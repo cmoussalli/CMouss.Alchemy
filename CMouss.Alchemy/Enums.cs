@@ -28,5 +28,4 @@ namespace CMouss.Alchemy
         ERC1155 = 2
     }
 
-
 }
