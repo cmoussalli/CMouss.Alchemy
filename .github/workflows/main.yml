@@ -18,8 +18,7 @@ jobs:
       - name: 'Pack project'
         run: dotnet pack CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore --no-build --configuration Debug --output CMouss.Alchemy/output
       
-      - run: echo "$SEC"
-        env:
-          SEC: ${{ secrets.NUGETKEY }}
+      - run: echo ${{ secrets.NUGETKEY }}
+
       - name: "Push package"
         run: dotnet nuget push CMouss.Alchemy/output/*.nupkg -k ${{ secrets.NUGETKEY }} -s https://api.nuget.org/v3/index.json
