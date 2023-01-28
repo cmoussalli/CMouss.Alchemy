@@ -3,9 +3,9 @@ name: "Deploy to Nuget"
 on: ["push"]
 
 env:
-	MAINPROJECT_PATH: CMouss.Alchemy/CMouss.Alchemy.csproj
 	PACKAGE_OUTPUT: ${{ github.workspace }}\output
 	NUGET_SOURCE : ''https://api.nuget.org/v3/index.json''
+	MAINPROJECT_PATH: CMouss.Alchemy/CMouss.Alchemy.csproj
 
 jobs:
 	deploy:
