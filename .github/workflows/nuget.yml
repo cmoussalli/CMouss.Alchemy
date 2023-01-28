@@ -3,7 +3,7 @@ name: "Deploy to Nuget"
 on: ["push"]
 
 jobs:
-	deploy:
+	build:
 		runs-on: windows-latest
 		steps:
 		- name: Checkout
