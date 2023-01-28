@@ -1,0 +1,33 @@
+name: "Deploy to Nuget"
+
+on: ["push"]
+
+env:
+	Project0_Path: 'CMouss.Alchemy/CMouss.Alchemy.csproj'
+	Package_Output_Directory: ${{ github.workspace }}\output
+	NUGET_SOURCE : ''https://api.nuget.org/v3/index.json''
+
+jobs:
+	deploy:
+		name: 'Deploy'
+		runs-on: 'windows-latest'
+		steps:
+		- name: 'Checkout'
+		  uses: actions/checkout@v2
+
+		- name: 'Install dotnet'
+		  uses: actions/setup-dotnet@v6
+		  with:
+			dotnet-version: '6.0'
+
+		- name: 'Restore packages'
+		run: dotnet restore ${{ env.Project0_Path }}
+
+		- name: 'Build project'
+		run: dotnet build ${{ env.Project0_Path }} --no-restore Release
+
+		- name: 'Pack project'
+		run: dotnet pack ${{ env.Project0_Path }} --no-resore --no-build --configuration Release --include-symbols --output ${{ env.Package_Output_Directory }}
+
+		- name: "Push package"
+		run: dotnet nuget push ${{ env.Package_Output_Directory }}\*.nupkg -k ${{ secrets.NUGETKEY }} -s ${{ env.NUGET_SOURCE }}
