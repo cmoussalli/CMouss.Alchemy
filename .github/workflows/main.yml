@@ -1,6 +1,8 @@
 name: Build
 on:
-  push
+  push:
+    tags-ignore:
+    - nuget*
   
 jobs:
   build:
