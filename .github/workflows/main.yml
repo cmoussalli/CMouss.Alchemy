@@ -10,14 +10,14 @@ jobs:
         with: 
           dotnet-version: 6.0.x
       - run: dotnet clean
-      - run: echo "Nice to meet you!"
+      - run: echo ${{ env.MAINPROJECT_PATH }}
       - name: 'Restore packages'
         run: dotnet restore ${{ env.MAINPROJECT_PATH }}
       - name: 'Build project'
         run: dotnet build ${{ env.MAINPROJECT_PATH }} --no-restore Release
       
       - name: 'Pack project'
-        run: dotnet pack ${{ env.MAINPROJECT_PATH }} --no-resore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT }}
+        run: dotnet pack ${{ env.MAINPROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT }}
       
       - name: "Push package"
         run: dotnet nuget push ${{ env.PACKAGE_OUTPUT }}\*.nupkg -k ${{ secrets.NUGETKEY }} -s ${{ env.NUGET_SOURCE }}
