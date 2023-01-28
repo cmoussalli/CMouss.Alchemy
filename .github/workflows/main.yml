@@ -1,0 +1,11 @@
+name: Test
+on:
+  workflow_dispatch:
+  
+jobs:
+  log:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Log the Secret
+      run: echo 123
