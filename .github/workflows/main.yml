@@ -10,7 +10,6 @@ jobs:
         with: 
           dotnet-version: 6.0.x
       - run: dotnet clean
-      - run: echo ${{ secrets.MAINPROJECT_PATH }}
       - name: 'Restore packages'
         run: dotnet restore CMouss.Alchemy/CMouss.Alchemy.csproj
       - name: 'Build project'
