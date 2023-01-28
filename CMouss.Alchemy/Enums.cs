@@ -17,9 +17,7 @@ namespace CMouss.Alchemy
         Polygon_Mainnet = 21,
         Polygon_Mumbai = 22,
 
-        Flow_Mainnet = 31,
-
-
+        Flow_Mainnet = 31
 
     }
 
