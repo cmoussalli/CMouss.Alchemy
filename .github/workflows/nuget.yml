@@ -3,21 +3,21 @@ name: Deploy to Nuget
 on: push
 
 env:
-	PROJECT0_PATH: 'CMouss.Alchemy/CMouss.Alchemy.csproj'
+	PROJECT0_PATH: CMouss.Alchemy/CMouss.Alchemy.csproj
 	PACKAGE_OUTPUT: ${{ github.workspace }}\output
-	NUGET_SOURCE : 'https://api.nuget.org/v3/index.json'
+	NUGET_SOURCE : https://api.nuget.org/v3/index.json
 
 jobs:
 	deploy:
 		runs-on: windows-latest
 		steps:
-		- name: 'Checkout'
+		- name: Checkout
 		  uses: actions/checkout@v2
 
-		- name: 'Install dotnet'
+		- name: Installdotnet
 		  uses: actions/setup-dotnet@v6
 		  with:
-			dotnet-version: '6.0'
+			dotnet-version: 6.0
 
 		- name: 'Restore packages'
 		run: dotnet restore ${{ env.PROJECT0_PATH }}
