@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with: 
           dotnet-version: 6.0.x
-          source-url: https://api.nuget.org/v3/index.json
+      - run: dotnet clean
       - run: echo "Nice to meet you!"
       - name: 'Restore packages'
         run: dotnet restore ${{ env.MAINPROJECT_PATH }}
