@@ -1,22 +1,19 @@
-name: "Deploy to Nuget"
-
-on: ["push"]
-
+name: Deploy to Nuget
+on: push
 jobs:
 	build:
 		runs-on: windows-latest
 		steps:
-		- name: Checkout
-		  uses: actions/checkout@v2
-		- name: Install dotnet
+		-uses: actions/checkout@v2
+		-name: Install dotnet
 		  uses: actions/setup-dotnet@v6
 		  with:
 			dotnet-version: 6.0.x
-		- name: Restore packages
+		-name: Restore packages
 		run: dotnet restore ${{ secrets.MAINPROJECT_PATH }}
-		- name: Build project
+		-name: Build project
 		run: dotnet build ${{ secrets.MAINPROJECT_PATH }} --no-restore Release
-		- name: Pack project
+		-name: Pack project
 		run: dotnet pack ${{ secrets.MAINPROJECT_PATH }} --no-resore --no-build --configuration Release --include-symbols --output ${{ github.workspace }}\output
-		- name: Push package
+		-name: Push package
 		run: dotnet nuget push ${{ github.workspace }}\output\*.nupkg -k ${{ secrets.NUGETKEY }} -s ${{ secrets.NUGET_SOURCE }}
