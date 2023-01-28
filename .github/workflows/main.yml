@@ -8,4 +8,4 @@ jobs:
     
     steps:
       - name: Log the Secret
-      run: echo 123
+      run: echo '123'
