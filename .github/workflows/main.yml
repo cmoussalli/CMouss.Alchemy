@@ -1,20 +1,23 @@
 name: Build
 on:
-	push
+  push
+  
 jobs:
-	build:
-		runs-on: windows-latest
-		steps:
-		-uses: actions/checkout@v2
-		-name: Install dotnet
-		  uses: actions/setup-dotnet@v6
-		  with:
-			dotnet-version: 6.0.x
-		-name: Restore packages
-		run: dotnet restore ${{ secrets.MAINPROJECT_PATH }}
-		-name: Build project
-		run: dotnet build ${{ secrets.MAINPROJECT_PATH }} --no-restore Release
-		-name: Pack project
-		run: dotnet pack ${{ secrets.MAINPROJECT_PATH }} --no-resore --no-build --configuration Release --include-symbols --output ${{ github.workspace }}\output
-		-name: Push package
-		run: dotnet nuget push ${{ github.workspace }}\output\*.nupkg -k ${{ secrets.NUGETKEY }} -s ${{ secrets.NUGET_SOURCE }}
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+        with: 
+          dotnet-version: 6.0.x
+      - run: dotnet clean
+      - name: 'Restore packages'
+        run: dotnet restore CMouss.Alchemy/CMouss.Alchemy.csproj
+      - name: 'Build project'
+        run: dotnet build CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore
+      
+      - name: 'Pack project'
+        run: dotnet pack CMouss.Alchemy/CMouss.Alchemy.csproj --no-restore --no-build --configuration Debug --output output
+
+      - name: "Push package"
+        run: dotnet nuget push output\*.nupkg -k ${{ secrets.NUGETKEY }} -s https://api.nuget.org/v3/index.json
